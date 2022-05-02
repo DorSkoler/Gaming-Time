@@ -14,8 +14,8 @@
             android:id="@+id/action_blankFragment_to_blankFragment2"
             app:destination="@id/blankFragment2" />
         <action
-            android:id="@+id/action_blankFragment_to_blankFragment3"
-            app:destination="@id/blankFragment3" />
+            android:id="@+id/action_blankFragment_to_mainActivity2"
+            app:destination="@id/mainActivity2" />
     </fragment>
     <fragment
         android:id="@+id/blankFragment2"
@@ -26,9 +26,8 @@
             android:id="@+id/action_blankFragment2_to_blankFragment4"
             app:destination="@id/blankFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/blankFragment3"
-        android:name="com.example.myapplication.BlankFragment3"
-        android:label="fragment_blank3"
-        tools:layout="@layout/fragment_blank3" />
+    <activity
+        android:id="@+id/mainActivity2"
+        android:name="com.example.myapplication.MainActivity2"
+        android:label="MainActivity2" />
 </navigation>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,6 +59,10 @@ public class BlankFragment2 extends Fragment {
         }
     }
 
+    boolean isEmailValid(String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,13 +70,37 @@ public class BlankFragment2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_blank2, container,  false);
         Button accept = view.findViewById(R.id.acceptbtn);
         TextView returnbtn = view.findViewById(R.id.returntbtn);
-
+        TextView email = view.findViewById(R.id.email_register);
+        TextView password = view.findViewById(R.id.password_register);
+        TextView phone = view.findViewById(R.id.phone);
+        TextView user = view.findViewById(R.id.username_register);
 
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainActivity mainActivity = ( MainActivity) getActivity();
-                mainActivity.registerFunc(view);
+
+                if (email.getText().toString().isEmpty()) {
+                    Toast.makeText(mainActivity, "Insert email", Toast.LENGTH_LONG).show();
+                }
+                else if (!isEmailValid(email.getText().toString())) {
+                    Toast.makeText(mainActivity, "Insert valid email", Toast.LENGTH_LONG).show();
+                }
+                else if (password.getText().toString().isEmpty()) {
+                    Toast.makeText(mainActivity, "Insert password", Toast.LENGTH_LONG).show();
+                }
+                else if (password.getText().toString().length() < 8) {
+                    Toast.makeText(mainActivity, "Password too short", Toast.LENGTH_LONG).show();
+                }
+                else if (phone.getText().toString().isEmpty()) {
+                    Toast.makeText(mainActivity, "Insert phone number", Toast.LENGTH_LONG).show();
+                }
+                else if (user.getText().toString().isEmpty()) {
+                    Toast.makeText(mainActivity, "Insert user", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    mainActivity.registerFunc(view);
+                }
             }
         });
 

@@ -6,6 +6,8 @@ import androidx.navigation.Navigation;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
     }
@@ -53,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Logged in", Toast.LENGTH_LONG).show();
-                            Navigation.findNavController(view).navigate(R.id.action_blankFragment_to_blankFragment3);
+                            Navigation.findNavController(view).navigate(R.id.action_blankFragment_to_mainActivity2);
                         } else {
                             Toast.makeText(MainActivity.this, "Failed to login", Toast.LENGTH_LONG).show();
                         }
@@ -74,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Registered Successful", Toast.LENGTH_LONG).show();
                             Navigation.findNavController(view).navigate(R.id.action_blankFragment2_to_blankFragment4);
+
                         } else {
                             Toast.makeText(MainActivity.this, "Failed to register", Toast.LENGTH_LONG).show();
                         }
