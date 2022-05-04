@@ -59,10 +59,6 @@ public class BlankFragment2 extends Fragment {
         }
     }
 
-    boolean isEmailValid(String email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,7 +79,7 @@ public class BlankFragment2 extends Fragment {
                 if (email.getText().toString().isEmpty()) {
                     Toast.makeText(mainActivity, "Insert email", Toast.LENGTH_LONG).show();
                 }
-                else if (!isEmailValid(email.getText().toString())) {
+                else if (!mainActivity.isEmailValid(email.getText().toString())) {
                     Toast.makeText(mainActivity, "Insert valid email", Toast.LENGTH_LONG).show();
                 }
                 else if (password.getText().toString().isEmpty()) {

@@ -17,6 +17,7 @@
             android:id="@+id/action_blankFragment_to_mainActivity2"
             app:destination="@id/mainActivity2" />
     </fragment>
+
     <fragment
         android:id="@+id/blankFragment2"
         android:name="com.example.myapplication.BlankFragment2"

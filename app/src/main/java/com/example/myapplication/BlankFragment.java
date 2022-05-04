@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,12 +65,28 @@ public class BlankFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_blank, container,  false);
         Button login = view.findViewById(R.id.loginbtn);
         Button register = view.findViewById(R.id.registerbtn);
+        TextView email = view.findViewById(R.id.email_login);
+        TextView password = view.findViewById(R.id.password_login);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainActivity mainActivity = ( MainActivity) getActivity();
-                mainActivity.loginFunc(view);
+                if (email.getText().toString().isEmpty()) {
+                    Toast.makeText(mainActivity, "Insert email", Toast.LENGTH_LONG).show();
+                }
+                else if (!mainActivity.isEmailValid(email.getText().toString())) {
+                    Toast.makeText(mainActivity, "Insert valid email", Toast.LENGTH_LONG).show();
+                }
+                else if (password.getText().toString().isEmpty()) {
+                    Toast.makeText(mainActivity, "Insert password", Toast.LENGTH_LONG).show();
+                }
+                else if (password.getText().toString().length() < 8) {
+                    Toast.makeText(mainActivity, "Password too short", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    mainActivity.loginFunc(view);
+                }
             }
         });
 
